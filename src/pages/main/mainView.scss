@@ -1,0 +1,229 @@
+$background-app: #f4f5f7;
+$box-shadow-color: #00000054;
+//Font
+$thin: 100;
+$extra-light: 200;
+$light: 300;
+$regular: 400;
+$medium: 500;
+$semibold: 600;
+$bold: 700;
+$extra-bold: 800;
+$black: 900;
+
+//Colors
+//White
+$white: #fff;
+$white-gray: #c8d6e5;
+
+//primary color
+$primary: #6c5dd3;
+
+//accent
+$accent: #ee5253;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box !important;
+}
+// buttons
+button {
+  outline: none;
+  cursor: pointer;
+  font-weight: $bold;
+  font-size: 14px;
+  border: none;
+  background: $primary;
+  color: $white;
+  padding: 10px 35px;
+  border-radius: 28px;
+  &:hover {
+    transform: scale(1.02);
+    transition: all ease 0.2s;
+    box-shadow: 2px 2px 5px $box-shadow-color;
+  }
+}
+.btn-accent {
+  background: $accent;
+  color: $white;
+}
+
+//inputs
+input {
+  height: 30px;
+  border: 0;
+  border-bottom: 1px solid $white-gray;
+  padding: 0 16px;
+  &:focus {
+    border-color: $primary;
+    outline: none;
+  }
+  &::-webkit-inner-spin-button,
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+  }
+  &:focus-visible {
+    outline: none;
+  }
+}
+
+table {
+  width: 100%;
+  border: 1px solid $white-gray;
+  border-radius: 15px;
+  border-spacing: 0px;
+  thead tr {
+    th {
+      border-bottom: 1px solid $white-gray;
+      border-right: 1px solid $white-gray;
+      padding: 10px;
+    }
+    th:last-child {
+      border-right: 0;
+      text-align: left;
+    }
+  }
+  tbody {
+    tr:last-child {
+      td {
+        border-bottom: 0;
+      }
+    }
+    tr {
+      td {
+        border-bottom: 1px solid $white-gray;
+        border-right: 1px solid $white-gray;
+        padding: 10px 10px;
+        text-align: center;
+      }
+      td:last-child {
+        border-right: 0;
+      }
+    }
+  }
+}
+
+.main-content {
+  background: $background-app;
+  padding: 1rem;
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: min-content 1fr;
+  grid-template-rows: min-content 1fr;
+  grid-template-areas:
+    "createOrder createOrder"
+    "contCreate tReport";
+  gap: 20px;
+  //cards
+  .card {
+    background: $white;
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 2px 2px 20px $box-shadow-color;
+  }
+  .create-order {
+    grid-area: createOrder;
+    display: flex;
+
+    flex-direction: column;
+    gap: 10px;
+    form {
+      display: flex;
+      justify-content: space-evenly;
+      position: relative;
+      align-items: flex-end;
+      flex-wrap: wrap;
+      gap: 5px;
+      .msg-error {
+        font-size: 12px;
+        color: $accent;
+        position: absolute;
+        top: 105%;
+        left: 5%;
+      }
+    }
+
+    .select-vehicle {
+      width: 200px;
+    }
+  }
+  .container-create {
+    grid-area: contCreate;
+    width: max-content;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    .create {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      & > form {
+        display: flex;
+        gap: 1rem;
+        position: relative;
+        .btn-create-vehicle {
+          border-radius: 50%;
+          height: 30px;
+          width: 30px;
+          padding: 0;
+        }
+        .factoryTime {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          input {
+            width: 50px;
+          }
+        }
+        .msg-error {
+          font-size: 12px;
+          color: $accent;
+          position: absolute;
+          top: 105%;
+        }
+      }
+    }
+    .container-table {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      .table-vehicles {
+        tbody {
+          tr {
+            td {
+              button {
+                padding: 0;
+                width: 30px;
+                height: 30px;
+              }
+              .input-new-name {
+                width: 150px;
+              }
+              .container-manofacture-time {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 15px;
+                input {
+                  width: 55px;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  .container-table-reports {
+    grid-area: tReport;
+    .no-data-table{
+      text-align: center;
+    }
+    .table-reports {
+      border-radius: 10px;
+      background: $white;
+    }
+  }
+}
