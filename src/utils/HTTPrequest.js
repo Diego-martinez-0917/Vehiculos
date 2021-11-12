@@ -77,3 +77,16 @@ export const createNewOrder = async (vehicle, quantity, date) => {
     throw error;
   }
 };
+
+export const getReportsDays = async () => {
+  try {
+    const reportDays = await axios({
+      method: "GET",
+      baseURL: SERVER_URL,
+      url: "/order/report",
+    });
+    return reportDays.data;
+  } catch (error) {
+    throw error;
+  }
+};
