@@ -1,12 +1,9 @@
 import React, { useState } from "react";
 import { updateVehicle, deleteVehicle } from "../../utils/HTTPrequest";
 export function TableReport({ vehiclesList, reportList }) {
-  // reportList=[]
-  console.log(reportList);
-
   let day = new Date();
   const daysWeek = {
-    0: "Sabado",
+    0: "Domingo",
     1: "Lunes",
     2: "Martes",
     3: "Miercoles",
@@ -19,10 +16,9 @@ export function TableReport({ vehiclesList, reportList }) {
     week.push(daysWeek[day.getDay()]);
     day.setDate(day.getDate() + 1);
   }
-  console.log(reportList.length === 0);
   return (
     <div className="container-table-reports ">
-      {reportList.length === 0 ? (
+      {vehiclesList.length === 0 ? (
         <h1 className="no-data-table">No existe ningun vehiculo registrado</h1>
       ) : (
         <table className="table-reports">
@@ -35,12 +31,12 @@ export function TableReport({ vehiclesList, reportList }) {
             </tr>
           </thead>
           <tbody>
-            {vehiclesList.map((vehicle, index) => {
+            {vehiclesList.map((vehicle,index) => {
               return (
-                <tr key={vehicle.id}>
+                <tr key={index}>
                   <td>{vehicle.name}</td>
-                  {reportList.map((report) => (
-                    <td key={report.id}>{report[vehicle.id]}</td>
+                  {reportList.map((report,index) => (
+                    <td key={index}>{report[vehicle.id]}</td>
                   ))}
                 </tr>
               );

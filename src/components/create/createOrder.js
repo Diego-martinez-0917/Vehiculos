@@ -7,14 +7,16 @@ import Select from "react-select";
 export function CreateOrder({ vehiclesList, onReload }) {
   const [selectedVehicle, setSelectedVehicle] = useState("");
   const [quantity, setQuantity] = useState("");
-  const [date, setDate] = useState("");
+  const [date, setDate] = useState(null);
   const [error, seterror] = useState(false);
 
   const onSubmit = () => {
     seterror(false);
-    if (selectedVehicle === "" || quantity === "" || date === "") {
+    console.log(quantity <= 1)
+    if (selectedVehicle === "" || quantity === "" || quantity < 1  || date === "") {
       seterror(true);
-    } else {
+    }
+     else {
       async function createOrder() {
         try {
           await createNewOrder(selectedVehicle.value, parseInt(quantity), date);
@@ -50,7 +52,8 @@ export function CreateOrder({ vehiclesList, onReload }) {
           type="number"
           value={quantity}
           placeholder="Cantidad"
-          onChange={(event) => setQuantity(event.target.value)}
+          min="1"
+          onChange={(event) => setQuantity(parseInt(event.target.value))}
         />
         <Flatpickr
           value={date}
